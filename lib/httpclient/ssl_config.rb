@@ -83,7 +83,9 @@ class HTTPClient
       @verify_callback = nil
       @dest = nil
       @timeout = nil
-      @ssl_version = "SSLv3"
+      # SSLv23 has the best compatiblity (supports SSLv2, SSLv3, TLSv1, TLSv1_1
+      # For details, see: https://www.openssl.org/docs/ssl/SSL_CTX_new.html
+      @ssl_version = "SSLv23"
       @options = defined?(SSL::OP_ALL) ? SSL::OP_ALL | SSL::OP_NO_SSLv2 : nil
       # OpenSSL 0.9.8 default: "ALL:!ADH:!LOW:!EXP:!MD5:+SSLv2:@STRENGTH"
       @ciphers = "ALL:!aNULL:!eNULL:!SSLv2" # OpenSSL >1.0.0 default
